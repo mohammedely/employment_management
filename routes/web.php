@@ -31,6 +31,6 @@ Route::get('department/show', [DepartmentController::class, 'show'])->name('depa
 Route::get('employee/show', [EmployeeController::class, 'show'])->name('employee.show');
 
 
-// Route::get('/employees/search', [EmployeeController::class, 'search'])->name('employees.search');
-Route::get('/employees/search', 'EmployeeController@search')->name('employees.search');
+Route::get('/employees/search', [EmployeeController::class, 'search'])->name('employees.search');
+// Route::get('/employees/search', 'EmployeeController@search')->name('employees.search');
 Route::get('/employee/statistics', [EmployeeController::class, 'statistics'])->name('employees.statistics');

@@ -16,12 +16,24 @@ class Employee extends Model
 
     public static function searchEmployees($searchTerm = null, $sortField = 'name', $sortDirection = 'asc', $perPage = 5)
     {
-        dd($searchTerm);
-        return self::with('departments')
-            ->when($searchTerm, function ($query) use ($searchTerm) {
-                $query->where('name', 'like', "%$searchTerm%");
-            })
-            ->orderBy($sortField, $sortDirection)
+        $query = self::with('departments');
+
+        if ($searchTerm) {
+            $query->where('name', 'like', "%$searchTerm%");
+        }
+
+        return $query->orderBy($sortField, $sortDirection)
             ->paginate($perPage);
     }
+
+
+    // public static function searchEmployees($searchTerm = null, $sortField = 'name', $sortDirection = 'asc', $perPage = 5)
+    // {
+    //     dd($searchTerm);
+    //     return self::with('departments')->when($searchTerm, function ($query) use ($searchTerm) {
+    //         $query->where('name', 'like', "%$searchTerm%");
+    //     })
+    //         ->orderBy($sortField, $sortDirection)
+    //         ->paginate($perPage);
+    // }
 }

@@ -34,7 +34,7 @@
 
   <div class="mb-3">
     <form action="{{ route('employees.search') }}" method="GET" class="form-inline">
-      <input type="text" name="search" class="form-control mr-2" value="{{ $searchTerm }}" placeholder="Search by name">
+      <input type="text" name="search" class="form-control mr-2" placeholder="Search by name">
       <button type="submit" class="btn btn-primary">Search</button>
     </form>
   </div>

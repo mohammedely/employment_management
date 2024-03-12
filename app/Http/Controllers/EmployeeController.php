@@ -22,12 +22,13 @@ class EmployeeController extends Controller
             $perPage = $request->input('perPage', 5);
             $sortField = $request->input('sortField', 'name');
             $sortDirection = $request->input('sortDirection', 'asc');
+            // $sortOrder = $request->input('sortOrder', 'asc');
 
             $employees = Employee::orderBy($sortField, $sortDirection)
                 ->paginate($perPage);
 
-            $searchTerm = $request->input('search');
-            return view('employees.index', compact('employees', 'sortField', 'sortDirection', 'searchTerm'));
+            // $searchTerm = $request->input('search');
+            return view('employees.index', compact('employees', 'sortField', 'sortDirection'));
         } catch (QueryException $e) {
             Log::error('Error: ' . $e->getMessage());
             return redirect()->route('employees.index')->with('error', 'Unable to retrieve employees.');
